@@ -1,0 +1,9 @@
+{
+  "webPort": 8000,
+  "dbFile": "baseStation.sqlite",
+  "sensors": [
+    {
+	"module": "bme280"
+    }
+  ]
+}

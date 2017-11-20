@@ -1,0 +1,10 @@
+extends ../../../../node_modules/jade-bootstrap/_bootstrap
+append styles
+  // Custom styles for this template
+  link(href='/css/starter-template.css', rel='stylesheet')
+  link(href='/css/style.css', rel='stylesheet')
+block body
+  +navbar-fixed("SnoCam","navbar","inverse")
+    +nav_item("/") Home
+    +nav_item("#") About
+    +nav_item("#") Contact

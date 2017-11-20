@@ -1,0 +1,18 @@
+extends ../layouts/portal
+append body
+	.container
+		h1= title
+		table(class="table table-striped table-hover")
+			each item in items
+				tr
+					td
+						span(href="/locations/" + item.id)= item.name
+					td
+						+a-btn("/locations/show/" + item.id, 'primary btn-xs') Show data
+					td
+						if item.active
+							+a-btn("/locations/deactivate/" + item.id, 'danger btn-xs') Deactivate
+						else
+							+a-btn("/locations/activate/" + item.id, 'success btn-xs') Activate
+					td
+						+a-btn("/locations/edit/" + item.id, 'warning btn-xs') Edit

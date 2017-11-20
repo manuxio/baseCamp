@@ -1,0 +1,63 @@
+extends ../layouts/portal
+append body
+  .container
+      h1= item.name
+      dl.dl-horizontal
+        dt Name
+        dd= item.name
+
+        dt Description
+        dd= item.description
+
+        dt Altitude
+        dd= item.altitude
+          |  meters above sea level
+
+        dt Latitude
+        dd= item.latitude
+
+        dt Longitude
+        dd= item.longitude
+
+        dt Active
+        dd= item.active ? 'Yes' : 'No'
+        
+        dt Last Relevation
+        dd= moment(lastTime).format('DD/MM/YY HH:mm:ss')
+        
+        dt Last Pressure
+        dd= lastPressure.toFixed(2)
+          |  hPa
+        
+        dt Last Temperature
+        dd= lastTemp.toFixed(2)
+          |  C°
+          
+        dt Average Pressure
+        dd= averagePressure.toFixed(2)
+          |  hPa
+        
+        dt Average Temperature
+        dd= averageTemperature.toFixed(2)
+          |  C°
+        
+      #map(style="height: 400px; width: 100%;")
+  script.
+    function initMap() {
+      var theLocation = {
+        lat: #{item.latitude},
+        lng: #{item.longitude}
+      };
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 18,
+        center: theLocation
+      });
+      var image = 'http://maps.google.com/mapfiles/ms/icons/POI.png';
+      var marker = new google.maps.Marker({
+        position: theLocation,
+        map: map,
+        title: '#{item.name}',
+        icon: image
+      });
+    }
+  script(async="async",defer="defer",src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApQfipHmw1whfb3x2etE1u79ebOmNJrmk&callback=initMap")
